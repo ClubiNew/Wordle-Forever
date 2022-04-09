@@ -16,7 +16,7 @@ jobs:
               with:
                   node-version: 10.x
             - name: Install Node Modules and Build
-              run: npm install -g @vue/cli && npm ci && npm build
+              run: npm install -g @vue/cli && npm ci && npm run build
             - name: Deploy
               uses: s0/git-publish-subdir-action@develop
               env:
