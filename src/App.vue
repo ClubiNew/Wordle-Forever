@@ -34,6 +34,10 @@ body {
     background-color: rgb(22, 22, 22);
 }
 
+a {
+    color: #538d4e;
+}
+
 .button {
     background-color: #538d4e;
     border: none;
