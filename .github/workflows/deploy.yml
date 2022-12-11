@@ -1,16 +1,29 @@
 name: Deploy
+
 on:
   push:
-    branches:
-      - main
+    branches: ["main"]
+
+concurrency:
+  group: "deployment"
+  cancel-in-progress: true
 
 jobs:
-  gh-pages:
+  github-pages:
     name: GitHub Pages
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    permissions:
+      pages: write
+      id-token: write
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v2
 
       - name: Setup Node
         uses: actions/setup-node@v3
@@ -23,8 +36,11 @@ jobs:
       - name: Build app
         run: npm run build
 
-      - name: Publish
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+          path: "./dist"
+
+      - name: Publish
+        id: deployment
+        uses: actions/deploy-pages@v1
