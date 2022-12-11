@@ -28,8 +28,12 @@ export default {
 
     methods: {
         newWord() {
+            document.activeElement.blur(); // prevent enter key triggering next worlde
+
             this.word = guessWords[Math.floor(Math.random() * guessWords.length)];
+            this.invalidWord = false;
             this.currentGuess = 0;
+
             for (let r = 0; r < 6; r++) {
                 this.rows[r] = [];
                 for (let c = 0; c < 5; c++) {
