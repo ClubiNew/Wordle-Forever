@@ -13,7 +13,7 @@
                 <br />
                 <br />
                 This is an infinite version of
-                <a href="https://www.powerlanguage.co.uk/wordle/">Wordle</a>.
+                <a href="https://www.nytimes.com/games/wordle/index.html">Wordle</a>.
             </div>
             <button class="button" @click="this.$emit('closeHelp')">Close</button>
         </div>
