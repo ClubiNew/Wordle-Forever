@@ -1,9 +1,10 @@
 <template>
     <header>
+        <div class="spacer"></div>
+        <h1>Wordle Forever</h1>
         <button class="icon" @click="this.$emit('openHelp')">
             <img alt="Help icon" src="../assets/help.png" height="45" />
         </button>
-        <h1>Wordle Forever</h1>
     </header>
 </template>
 
@@ -15,24 +16,22 @@ export default {
 
 <style scoped>
 header {
+    display: flex;
+    justify-content: space-around;
     border-bottom: 2px solid rgb(52, 52, 52);
     margin: auto;
     margin-bottom: 15px;
     width: 100%;
     max-width: 575px;
-    text-align: right;
+    text-align: center;
 }
 
-h1 {
-    text-align: center;
-    position: absolute;
-    width: 100%;
-    margin: 0;
-    top: 13px;
-    left: 0;
+.spacer {
+    width: 45px;
 }
 
 .icon {
+    padding: 0;
     background: none !important;
     border: none !important;
     cursor: pointer;
