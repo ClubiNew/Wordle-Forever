@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { validWords, guessWords } from "../words.js";
+var answerWords, validWords;
 
 export default {
     name: "Game",
@@ -30,7 +30,7 @@ export default {
         newWord() {
             document.activeElement.blur(); // prevent enter key triggering next worlde
 
-            this.word = guessWords[Math.floor(Math.random() * guessWords.length)];
+            this.word = answerWords[Math.floor(Math.random() * answerWords.length)];
             this.invalidWord = false;
             this.currentGuess = 0;
 
@@ -48,10 +48,21 @@ export default {
     },
 
     mounted() {
+        if (!answerWords || !validWords) return;
         this.newWord();
     },
 
-    created() {
+    async created() {
+        answerWords = await fetch("words/answers")
+            .then((res) => res.text())
+            .then((text) => text.split("\n"));
+
+        validWords = await fetch("words/valid")
+            .then((res) => res.text())
+            .then((text) => text.split("\n"));
+
+        this.newWord();
+
         window.addEventListener("keydown", (e) => {
             if (this.currentGuess == 6) return;
             if (e.key == "Enter") {

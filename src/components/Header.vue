@@ -3,7 +3,7 @@
         <div class="spacer"></div>
         <h1>Wordle Forever</h1>
         <button class="icon" @click="this.$emit('openHelp')">
-            <img alt="Help icon" src="../assets/help.png" height="45" />
+            <img alt="Help icon" src="help.png" height="45" />
         </button>
     </header>
 </template>
